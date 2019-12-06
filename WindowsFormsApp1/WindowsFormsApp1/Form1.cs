@@ -14,36 +14,15 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        IList<Course> courses;
-        public Dictionary<string, int> inDegree,Credits,Age;
-        Dictionary<string, List<string>> graph;
-        int totalCredits = 0;
-        string department = "CSE";
+        private IList<Course> courses;
+        private Dictionary<string, int> inDegree,Credits,Age;
+        private Dictionary<string, List<string>> graph;
+        private int totalCredits = 0;
+        private string department = "CSE";
 
         private void label2_Click(object sender, EventArgs e)
         {
 
-        }
-        
-        
-
-        public class Cmp : System.Collections.IComparer
-        {
-            private Dictionary<string, int> Age;
-            public Cmp(ref Dictionary<string,int> Age)
-            {
-                this.Age = Age;
-            }
-            public int Compare(object x, object y)
-            {
-                DataGridViewRow dgv1 = (DataGridViewRow)x;
-                DataGridViewRow dgv2 = (DataGridViewRow)y;                
-                string first, second;
-                first = dgv1.Cells[1].Value.ToString();
-                second = dgv2.Cells[1].Value.ToString();
-                if (Age[first] > Age[second]) return 1;
-                return -1;
-            }
         }
         public Form1()
         {
@@ -118,6 +97,28 @@ namespace WindowsFormsApp1
             dataGridView2.Sort(cmp);
                     
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure you want to reset all taken courses?", "Confirm action", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                foreach(Course crs in courses)
+                {
+                    if (crs.prerequisites[0] == "NIL") inDegree[crs.CourseName] = 0;
+                    else inDegree[crs.CourseName] = crs.prerequisites.Count;
+                    Age[crs.CourseName] = 0;                    
+                }
+                populateDataGrids();
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("test");
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -156,7 +157,6 @@ namespace WindowsFormsApp1
                 Queue<string> q = new Queue<string>();
                 q.Enqueue(courseName);
                 inDegree[courseName]++;
-                //takenCourses[courseName] = false;
                 while (q.Any())
                 {
                     string front = q.Dequeue();
@@ -173,6 +173,26 @@ namespace WindowsFormsApp1
 
                 populateDataGrids();
             }
+        }
+    }
+    public class Cmp : System.Collections.IComparer
+    {
+        //Custom comparer class for datagridview columns
+        private Dictionary<string, int> Age;
+        public Cmp(ref Dictionary<string, int> Age)
+        {
+            this.Age = Age;
+        }
+        public int Compare(object x, object y)
+        {
+            DataGridViewRow dgv1 = (DataGridViewRow)x;
+            DataGridViewRow dgv2 = (DataGridViewRow)y;
+            string first, second;
+            first = dgv1.Cells[1].Value.ToString();
+            second = dgv2.Cells[1].Value.ToString();
+            if (Age[first] > Age[second]) return 1;
+            else if (Age[first] == Age[second]) return System.String.Compare(first, second);
+            return -1;
         }
     }
 }
