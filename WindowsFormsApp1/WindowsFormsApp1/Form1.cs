@@ -15,18 +15,36 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         IList<Course> courses;
-        Dictionary<string, int> inDegree,Credits;
+        public Dictionary<string, int> inDegree,Credits,Age;
         Dictionary<string, List<string>> graph;
         int totalCredits = 0;
+        string department = "CSE";
 
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
+        
+        
 
-        string department = "CSE";
-
-
+        public class Cmp : System.Collections.IComparer
+        {
+            private Dictionary<string, int> Age;
+            public Cmp(ref Dictionary<string,int> Age)
+            {
+                this.Age = Age;
+            }
+            public int Compare(object x, object y)
+            {
+                DataGridViewRow dgv1 = (DataGridViewRow)x;
+                DataGridViewRow dgv2 = (DataGridViewRow)y;                
+                string first, second;
+                first = dgv1.Cells[1].Value.ToString();
+                second = dgv2.Cells[1].Value.ToString();
+                if (Age[first] > Age[second]) return 1;
+                return -1;
+            }
+        }
         public Form1()
         {
             InitializeComponent();
@@ -39,6 +57,7 @@ namespace WindowsFormsApp1
             inDegree = new Dictionary<string, int>();
             graph = new Dictionary<string, List<string>>();
             Credits = new Dictionary<string, int>();
+            Age = new Dictionary<string, int>();
            
             //Initialize graph and other variables
             for(int i=0; i<courses.Count; i++)
@@ -48,6 +67,7 @@ namespace WindowsFormsApp1
                 graph.Add(courseName, newlist);
                 Credits[courseName] = courses[i].Credits-48;//Credits stored as ASCII characters in file
                 inDegree[courseName] = 0;
+                Age[courseName] = 0;
             }
 
             //Create a Directed Acyclic Graph with courses as vertices, and calculate In-Degree of each vertex
@@ -64,6 +84,7 @@ namespace WindowsFormsApp1
             populateDataGrids();
         }
 
+       
         private void populateDataGrids()
         {
             // Populates the data-grids with available courses and taken courses
@@ -76,10 +97,14 @@ namespace WindowsFormsApp1
             foreach (Course crs in courses)
             {
                 if (inDegree[crs.CourseName] == 0)
+                {
                     dataGridView1.Rows.Add("+", crs.CourseName);
-                else if (inDegree[crs.CourseName] ==-1)
+                    Age[crs.CourseName]++;
+                }
+                else if (inDegree[crs.CourseName] == -1)
                 {
                     dataGridView2.Rows.Add("-", crs.CourseName);
+                    Age[crs.CourseName]--;
                     totalCredits += Credits[crs.CourseName];
                 }                
             }
@@ -87,9 +112,10 @@ namespace WindowsFormsApp1
             //Display total completed credits
             label2.Text = totalCredits.ToString();
 
-
-            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-            dataGridView2.Sort(dataGridView2.Columns[1], ListSortDirection.Ascending);
+            //Sort courses to display by "Age", meaning freshly unlocked courses are at the top
+            Cmp cmp = new Cmp(ref Age);
+            dataGridView1.Sort(cmp);
+            dataGridView2.Sort(cmp);
                     
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
