@@ -1,0 +1,27 @@
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\bin\Debug\Course Scheduler.exe.config
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\bin\Debug\Course Scheduler.exe
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\bin\Debug\Course Scheduler.pdb
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.csprojAssemblyReference.cache
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\obj\Debug\Course_Scheduler.Form1.resources
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\obj\Debug\Course_Scheduler.Properties.Resources.resources
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.csproj.GenerateResource.cache
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.exe
+C:\Users\USER\source\repos\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.pdb
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course_Scheduler.Form1.resources
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course_Scheduler.Properties.Resources.resources
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.csproj.GenerateResource.cache
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.exe
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.pdb
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\Course Scheduler.exe.config
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\Course Scheduler.exe
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\Course Scheduler.pdb
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\ExcelDataReader.dll
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\Newtonsoft.Json.dll
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\ExcelDataReader.pdb
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\ExcelDataReader.xml
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\ExcelDataReader.DataSet.xml
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\bin\Debug\Newtonsoft.Json.xml
+C:\Users\USER\Desktop\Uni-projects-master\Course Scheduler\Course Scheduler\obj\Debug\Course Scheduler.csproj.CopyComplete
