@@ -12,3 +12,17 @@ C:\Users\USER\Desktop\Course-Scheduler-master (1)\Course-Scheduler-master\AIUB C
 C:\Users\USER\Desktop\Course-Scheduler-master (1)\Course-Scheduler-master\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.csproj.CopyComplete
 C:\Users\USER\Desktop\Course-Scheduler-master (1)\Course-Scheduler-master\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.exe
 C:\Users\USER\Desktop\Course-Scheduler-master (1)\Course-Scheduler-master\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.pdb
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.csprojAssemblyReference.cache
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.FirstForm.resources
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.Form1.resources
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.Properties.Resources.resources
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.SecondForm.resources
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.csproj.GenerateResource.cache
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.exe
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.pdb
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\AIUB Course Scheduler.exe.config
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\AIUB Course Scheduler.exe
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\AIUB Course Scheduler.pdb
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\Newtonsoft.Json.dll
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\Newtonsoft.Json.xml
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.csproj.CopyComplete

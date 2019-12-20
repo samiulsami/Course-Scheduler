@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp1
+﻿namespace AIUB_Course_Scheduler
 {
     partial class Form1
     {

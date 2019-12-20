@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WindowsFormsApp1
+namespace AIUB_Course_Scheduler
 {
     public class Course
         {
@@ -8,5 +8,6 @@ namespace WindowsFormsApp1
             public string CourseName;
             public string CourseID;
             public int Credits;
-        }
+            public int Credits_required = 0;
+    }
 }

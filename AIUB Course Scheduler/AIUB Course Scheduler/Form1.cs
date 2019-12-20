@@ -8,10 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AIUB_Course_Scheduler;
 using Newtonsoft.Json;
 
-namespace WindowsFormsApp1
+namespace AIUB_Course_Scheduler
 {
     public partial class Form1 : Form
     {
@@ -48,7 +47,7 @@ namespace WindowsFormsApp1
                 string courseName = courses[i].CourseName;
                 List<string> newlist = new List<string>();
                 graph.Add(courseName, newlist);
-                Credits[courseName] = courses[i].Credits-48;//Credits stored as ASCII characters in file
+                Credits[courseName] = courses[i].Credits;
                 inDegree[courseName] = 0;
                 Age[courseName] = 0;
             }
@@ -67,6 +66,26 @@ namespace WindowsFormsApp1
             populateDataGrids();
         }
 
+        private void topological_sort(string source)
+        {
+            //do a topological sort from source and decrease increase in-degree of all reachable nodes
+            Queue<string> q = new Queue<string>();
+            q.Enqueue(source);
+            inDegree[source]=0;
+            while (q.Any())
+            {
+                string front = q.Dequeue();
+                foreach (string s in graph[front])
+                {
+                    if (inDegree[s] == -1)
+                    {
+                        q.Enqueue(s);
+                        inDegree[s] += 2;
+                    }
+                    else inDegree[s]++;
+                }
+            }
+        }
        
         private void populateDataGrids()
         {
@@ -79,7 +98,9 @@ namespace WindowsFormsApp1
             totalCredits = 0;
             foreach (Course crs in courses)
             {
-                if (inDegree[crs.CourseName] == 0)
+                if (crs.Credits_required > 0) continue;
+
+                if (inDegree[crs.CourseName] == 0 && crs.Credits_required==0)
                 {
                     dataGridView1.Rows.Add("+", crs.CourseName);
                     Age[crs.CourseName]++;
@@ -88,8 +109,31 @@ namespace WindowsFormsApp1
                 {
                     dataGridView2.Rows.Add("-", crs.CourseName);
                     Age[crs.CourseName] = 0;
-                    totalCredits += Credits[crs.CourseName];
+                    totalCredits += crs.Credits;
                 }                
+            }
+
+            foreach (Course crs in courses)
+            {
+                if (crs.Credits_required == 0) continue;
+
+                if(totalCredits>=crs.Credits_required && inDegree[crs.CourseName] == 0)
+                {
+                    dataGridView1.Rows.Add("+", crs.CourseName);
+                    Age[crs.CourseName]++;
+                }
+                else if (inDegree[crs.CourseName] == -1 && totalCredits>=crs.Credits_required)
+                {
+                    dataGridView2.Rows.Add("-", crs.CourseName);
+                    Age[crs.CourseName] = 0;
+                    totalCredits += crs.Credits;
+                }
+                else if(inDegree[crs.CourseName]==-1 && totalCredits < crs.Credits_required)
+                {
+                    //inDegree[crs.CourseName] = 0;
+                    topological_sort(crs.CourseName);
+                    populateDataGrids();//Never called more than once per course since "topological sort()" sets inDegree[courseName] to 0"
+                }
             }
 
             //Display total completed credits
@@ -138,11 +182,16 @@ namespace WindowsFormsApp1
 
         }
 
-        private void CloseButton_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            sf.Show();
-            this.Close();
+            DialogResult dr = MessageBox.Show("Go Back?", "Confirm action", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                sf.Show();
+                this.Close();
+            }
         }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -178,22 +227,7 @@ namespace WindowsFormsApp1
                 //Increment in-degree of all Taken courses(vertices) by 2 instead, since their in-degree is -1
                 string courseName = dataGridView2.Rows[i].Cells[1].Value.ToString();
 
-                Queue<string> q = new Queue<string>();
-                q.Enqueue(courseName);
-                inDegree[courseName]++;
-                while (q.Any())
-                {
-                    string front = q.Dequeue();
-                    foreach (string s in graph[front])
-                    {
-                        if (inDegree[s]==-1)
-                        {
-                            q.Enqueue(s);
-                            inDegree[s] += 2;
-                        }
-                        else inDegree[s]++;                        
-                    }
-                }
+                topological_sort(courseName);
 
                 populateDataGrids();
             }
