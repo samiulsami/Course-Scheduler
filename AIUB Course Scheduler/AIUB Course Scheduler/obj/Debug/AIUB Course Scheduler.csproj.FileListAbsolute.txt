@@ -26,3 +26,4 @@ C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\A
 C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\Newtonsoft.Json.dll
 C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\Newtonsoft.Json.xml
 C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB Course Scheduler.csproj.CopyComplete
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.SelectionForm.resources

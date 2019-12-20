@@ -13,9 +13,8 @@ namespace AIUB_Course_Scheduler
     public partial class SecondForm : Form
     {
         FirstForm ff;
-        public SecondForm(FirstForm ff)
+        public SecondForm()
         {
-            this.ff = ff;
             InitializeComponent();
             //ff.Close();
             
@@ -39,14 +38,17 @@ namespace AIUB_Course_Scheduler
                 return;
             }
             string department = comboBox1.SelectedItem.ToString();      
-            Form1 csf = new Form1(department,this);
-            csf.Show();
+            Form1 csf = new Form1(department);
             this.Hide();
+            csf.ShowDialog();
+            this.Close();
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            ff.Show();
+            ff = new FirstForm();
+            this.Hide();
+            ff.ShowDialog();
             this.Close();
         }
 

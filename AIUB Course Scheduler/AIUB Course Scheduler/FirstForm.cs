@@ -25,9 +25,11 @@ namespace AIUB_Course_Scheduler
 
         private void enterBtn_Click(object sender, EventArgs e)
         {
+            //this.Hide();
+            SecondForm sf = new SecondForm();
             this.Hide();
-            SecondForm sf = new SecondForm(this);
-            sf.Show();
+            sf.ShowDialog();
+            this.Close();
         }
 
         private void FirstForm_Load(object sender, EventArgs e)

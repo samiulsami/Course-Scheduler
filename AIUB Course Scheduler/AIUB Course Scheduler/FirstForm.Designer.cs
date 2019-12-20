@@ -35,12 +35,14 @@
             // 
             // appName_Label
             // 
-            this.appName_Label.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.appName_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.appName_Label.AutoSize = true;
             this.appName_Label.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.appName_Label.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.appName_Label.Font = new System.Drawing.Font("Lucida Calligraphy", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appName_Label.Location = new System.Drawing.Point(171, 69);
+            this.appName_Label.Location = new System.Drawing.Point(117, 48);
             this.appName_Label.Name = "appName_Label";
             this.appName_Label.Size = new System.Drawing.Size(670, 52);
             this.appName_Label.TabIndex = 0;
@@ -55,7 +57,7 @@
             this.enterBtn.BackColor = System.Drawing.Color.MediumTurquoise;
             this.enterBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.enterBtn.Font = new System.Drawing.Font("Elephant", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enterBtn.Location = new System.Drawing.Point(337, 252);
+            this.enterBtn.Location = new System.Drawing.Point(370, 296);
             this.enterBtn.Name = "enterBtn";
             this.enterBtn.Size = new System.Drawing.Size(112, 41);
             this.enterBtn.TabIndex = 1;
@@ -69,7 +71,7 @@
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.BackgroundImage = global::AIUB_Course_Scheduler.Properties.Resources.AiubPermanentCampus_7;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(808, 415);
+            this.ClientSize = new System.Drawing.Size(874, 503);
             this.Controls.Add(this.enterBtn);
             this.Controls.Add(this.appName_Label);
             this.Cursor = System.Windows.Forms.Cursors.Default;

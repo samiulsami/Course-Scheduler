@@ -19,16 +19,15 @@ namespace AIUB_Course_Scheduler
         private Dictionary<string, List<string>> graph;
         private int totalCredits = 0;
         private string department = "CSE";
-        private SecondForm sf;
+        //private SecondForm sf;
 
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
-        public Form1(string department, SecondForm sf)
+        public Form1(string department)
         {
             InitializeComponent();
-            this.sf = sf;
             this.department = department;
             string fileName = department + ".json";           
             //Read file containing the pre-requisites for each course in the CSE program
@@ -164,7 +163,21 @@ namespace AIUB_Course_Scheduler
 
         private void button2_Click(object sender, EventArgs e)
         {
-            throw (new NotImplementedException());
+            DialogResult dr = MessageBox.Show("Continue to next step?", "Confirm action", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                IList<Course> AvailableCourses = new List<Course>();
+                foreach (Course crs in courses)
+                {
+                    if (inDegree[crs.CourseName] == 0 && totalCredits>=crs.Credits_required)
+                        AvailableCourses.Add(crs);
+                }
+                SelectionForm sf = new SelectionForm(AvailableCourses,department);
+                this.Hide();
+                sf.ShowDialog();
+                this.Close();
+
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -187,7 +200,9 @@ namespace AIUB_Course_Scheduler
             DialogResult dr = MessageBox.Show("Go Back?", "Confirm action", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
-                sf.Show();
+                SecondForm sf = new SecondForm();
+                this.Hide();
+                sf.ShowDialog();
                 this.Close();
             }
         }
