@@ -30,10 +30,10 @@ namespace AIUB_Course_Scheduler
             InitializeComponent();
             this.sf = sf;
             this.department = department;
-
+            string fileName = department + ".json";           
             //Read file containing the pre-requisites for each course in the CSE program
             //COURSES WITH CREDI REQUIREMENTS ARE NOT INCLUDED YET (e.g; RESEEARCH METHODOLOGY, THESIS, INTERNSHIP, etc.)
-            String jsonresult = File.ReadAllText(@"CSE Prerequisites.json");
+            String jsonresult = File.ReadAllText(@fileName);
             courses = JsonConvert.DeserializeObject<List<Course>>(jsonresult);
 
             inDegree = new Dictionary<string, int>();
