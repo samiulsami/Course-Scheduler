@@ -185,7 +185,7 @@ namespace AIUB_Course_Scheduler
                     if (inDegree[crs.CourseName] == 0 && totalCredits>=crs.Credits_required)
                         AvailableCourses.Add(crs);
                 }
-                SelectionForm sf = new SelectionForm(AvailableCourses,department);
+                SelectionForm sf = new SelectionForm(AvailableCourses,department,courses);
                 this.Hide();
                 sf.ShowDialog();
                 this.Close();
