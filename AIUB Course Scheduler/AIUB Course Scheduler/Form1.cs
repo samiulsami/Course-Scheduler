@@ -30,8 +30,8 @@ namespace AIUB_Course_Scheduler
             InitializeComponent();
             this.department = department;
             string fileName = department + ".json";           
-            //Read file containing the pre-requisites for each course in the CSE program
-            //COURSES WITH CREDI REQUIREMENTS ARE NOT INCLUDED YET (e.g; RESEEARCH METHODOLOGY, THESIS, INTERNSHIP, etc.)
+
+            //Read file containing the pre-requisites for each course in the selected bachelor's program        
             String jsonresult = File.ReadAllText(@fileName);
             courses = JsonConvert.DeserializeObject<List<Course>>(jsonresult);
 
@@ -67,7 +67,9 @@ namespace AIUB_Course_Scheduler
 
         private void topological_sort(string source)
         {
-            //do a topological sort from source and decrease increase in-degree of all reachable nodes
+            //Run a BFS from selected vertex and only explore a vertex(course) if it has been taken
+            //Increment in-degree of all child vertices by 1
+            //Increment in-degree of all Taken courses(vertices) by 2 instead, since their in-degree is -1
             Queue<string> q = new Queue<string>();
             q.Enqueue(source);
             inDegree[source]=0;
@@ -95,6 +97,8 @@ namespace AIUB_Course_Scheduler
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
             totalCredits = 0;
+
+            //For courses without credit requirements
             foreach (Course crs in courses)
             {
                 if (crs.Credits_required > 0) continue;
@@ -112,6 +116,8 @@ namespace AIUB_Course_Scheduler
                 }                
             }
 
+            bool re_eval = false;
+            //For courses with credit requirements
             foreach (Course crs in courses)
             {
                 if (crs.Credits_required == 0) continue;
@@ -129,14 +135,21 @@ namespace AIUB_Course_Scheduler
                 }
                 else if(inDegree[crs.CourseName]==-1 && totalCredits < crs.Credits_required)
                 {
-                    //inDegree[crs.CourseName] = 0;
                     topological_sort(crs.CourseName);
-                    populateDataGrids();//Never called more than once per course since "topological sort()" sets inDegree[courseName] to 0"
+                    //populateDataGrids();
+                    re_eval = true;
                 }
             }
-
+            if (re_eval)
+            {
+                //re-evaluation needed if some courses with credit requirements are removed
+                populateDataGrids();
+                return;
+            }
             //Display total completed credits
-            label2.Text = totalCredits.ToString();
+            string creditstring = "";
+            creditstring = totalCredits.ToString() + " Credits Completed";
+            label1.Text = creditstring;
 
             //Sort courses to display by "Age", meaning freshly unlocked courses are at the top
             Cmp cmp = new Cmp(ref Age);
@@ -207,6 +220,11 @@ namespace AIUB_Course_Scheduler
             }
         }
 
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -236,10 +254,7 @@ namespace AIUB_Course_Scheduler
             //When user removes a taken course by clicking the "-" button
             //Note: all taken courses have in-degree -1
             if (j == 0 && i >= 0)
-            {
-                //Run a BFS from selected vertex and only explore a vertex(course) if it has been taken
-                //Increment in-degree of all child vertices by 1
-                //Increment in-degree of all Taken courses(vertices) by 2 instead, since their in-degree is -1
+            {                
                 string courseName = dataGridView2.Rows[i].Cells[1].Value.ToString();
 
                 topological_sort(courseName);

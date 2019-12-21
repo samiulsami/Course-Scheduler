@@ -50,5 +50,22 @@ namespace AIUB_Course_Scheduler
             f1.ShowDialog();
             this.Close();
         }
+
+        private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int i = e.RowIndex;
+            int j = e.ColumnIndex;
+
+            if (j == 0 && i >= 0)
+            {        
+                    DataGridViewRow row = dataGridView2.Rows[i];
+                    DataGridViewCheckBoxCell cell = row.Cells[0] as DataGridViewCheckBoxCell;                
+                    cell.Value = !Convert.ToBoolean(cell.Value);
+                    if (Convert.ToBoolean(cell.Value) == true)
+                        row.DefaultCellStyle.BackColor = Color.LightGray;                    
+                    else 
+                        row.DefaultCellStyle.BackColor = Color.White;                
+            }
+        }
     }
 }
