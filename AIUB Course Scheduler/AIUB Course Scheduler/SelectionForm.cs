@@ -64,8 +64,8 @@ namespace AIUB_Course_Scheduler
                 }
             }
 
-            SchedulePreferencesSelection sps = new SchedulePreferencesSelection(selectedCourses,taken, AvailableCourses, department, courses);
-            this.Hide();
+            SchedulePreferencesSelection sps = new SchedulePreferencesSelection(selectedCourses, AvailableCourses, department, courses);
+            //this.Hide();
             sps.ShowDialog();
             this.Close();
 

@@ -14,11 +14,11 @@ namespace AIUB_Course_Scheduler
             public int to;
             public string room;
         }
-        private int capacity { get; set; }
-        private int count { get; set; }
-        private string courseName { get; set; }
-        private string section { get; set; }
-        private List<Time> times { get; set; }
+        public int capacity { get; set; }
+        public int count { get; set; }
+        public string courseName { get; set; }
+        public string section { get; set; }
+        public List<Time> times { get; set; }
         public Section(int capacity, int count, string courseName, string section)
         {
             this.capacity = capacity;
@@ -31,10 +31,12 @@ namespace AIUB_Course_Scheduler
         private int getSeconds(string t)
         {
             int totalSeconds = 0;
-            if (t.Length < 8) t = "0" + t;
-            int hours = Convert.ToInt32(t.Substring(0, 2));
-            int minutes = Convert.ToInt32(t.Substring(3, 2));
-            if (t[6] == 'P') hours += 12;
+            int i = 0;
+            for (; t[i] != ':'; i++) ;
+
+            int hours = Convert.ToInt32(t.Substring(0, i));
+            int minutes = Convert.ToInt32(t.Substring(i+1, 2));
+            if (t[t.Length-2] == 'P' && hours!=12) hours += 12;
             totalSeconds = (hours * 60 * 60) + (minutes*60);
             return totalSeconds;
         }
@@ -46,6 +48,7 @@ namespace AIUB_Course_Scheduler
             t.to = getSeconds(to);
             t.room = room;
             times.Add(t);
+            Console.WriteLine("From: " + t.from + " to: " + t.to + "(" + from + " " + to + ")");
         }
 
         public bool checkClash(List<Time> t)
