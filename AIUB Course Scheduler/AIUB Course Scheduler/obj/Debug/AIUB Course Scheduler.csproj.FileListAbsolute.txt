@@ -29,3 +29,9 @@ C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\A
 C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.SelectionForm.resources
 C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.ScheduleDisplayForm.resources
 C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\obj\Debug\AIUB_Course_Scheduler.SchedulePreferencesSelection.resources
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\ExcelDataReader.DataSet.dll
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\ExcelDataReader.dll
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\ExcelDataReader.pdb
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\ExcelDataReader.xml
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\ExcelDataReader.DataSet.pdb
+C:\Users\USER\Desktop\cs\AIUB Course Scheduler\AIUB Course Scheduler\bin\Debug\ExcelDataReader.DataSet.xml
