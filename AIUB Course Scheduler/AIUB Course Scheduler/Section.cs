@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace AIUB_Course_Scheduler
 {
+    public struct Time
+    {
+        public string day;
+        public int from;
+        public int to;
+        public string room;
+    }
     public class Section
     {
-        public struct Time{
-            public string day;
-            public int from;
-            public int to;
-            public string room;
-        }
+        
         public int capacity { get; set; }
         public int count { get; set; }
         public string courseName { get; set; }
         public string section { get; set; }
+        public int Credits { get; set; }
         public List<Time> times { get; set; }
         public Section(int capacity, int count, string courseName, string section)
         {
@@ -48,12 +51,12 @@ namespace AIUB_Course_Scheduler
             t.to = getSeconds(to);
             t.room = room;
             times.Add(t);
-            Console.WriteLine("From: " + t.from + " to: " + t.to + "(" + from + " " + to + ")");
+            //Console.WriteLine("From: " + t.from + " to: " + t.to + "(" + from + " " + to + ")");
         }
 
         public bool checkClash(List<Time> t)
         {
-
+            //return false;
             foreach(Time x in t)
             {           
                 foreach(Time y in times)
