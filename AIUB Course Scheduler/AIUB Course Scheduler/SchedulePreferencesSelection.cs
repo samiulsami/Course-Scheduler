@@ -39,13 +39,34 @@ namespace AIUB_Course_Scheduler
             return s.Substring(0, i).ToLower().Trim();
         }
 
-        bool within_limits(Schedule sch)
+        private void label2_Click(object sender, EventArgs e)
         {
-            //bool within = true;
-            if (sch.Credits < minCredit || sch.Credits > maxCredit) return false;
 
-            return false;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            minCredit = Convert.ToInt32(textBox1.Text);
+            maxCredit = Convert.ToInt32(textBox2.Text);
+            dfs();
+            if (scheduleList.Count == 0)
+            {
+                MessageBox.Show("No schedule possible");                
+            }
+            else
+            {
+                ScheduleDisplayForm sdf = new ScheduleDisplayForm(scheduleList, selectedCourses,  x,  y,  z);
+                this.Hide();
+                sdf.ShowDialog();
+                this.Close();
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         public SchedulePreferencesSelection(object selectedCourses, object x, object y, object z)
         {
             this.x = x as List<Course>;
@@ -137,9 +158,13 @@ namespace AIUB_Course_Scheduler
             }*/
             //minBreak = 0;
             //maxBreak = 999999;
-            minCredit = 9;
-            maxCredit = 18;
+            // minCredit = 12;
+            //maxCredit = 21;
 
+            
+        }
+        private void dfs()
+        {
             Stack<Schedule> st = new Stack<Schedule>();
             Schedule src = new Schedule();
             for (int i = 0; i < sectionList.Count; i++) src.hash += "0";
@@ -147,33 +172,33 @@ namespace AIUB_Course_Scheduler
 
             st.Push(src);
 
-            while (st.Any() && scheduleList.Count<=100)
+            while (st.Any() && scheduleList.Count <= 100)
             {
                 Schedule top = st.Pop();
                 //if (visited.Contains(top.hash)) continue;
                 //scheduleList.Add((Schedule)top.Clone());
                 //Console.WriteLine(top.Credits);
                 visited.Add(top.hash);
-                
-                for(int i=0; i<sectionList.Count; i++)
+
+                for (int i = 0; i < sectionList.Count; i++)
                 {
                     Schedule cln = (Schedule)top.Clone();
                     if (cln.hash[i] == '1') continue;
 
                     string tmp = "";
-                    for(int j=0; j<sectionList.Count; j++)
+                    for (int j = 0; j < sectionList.Count; j++)
                     {
                         if (j == i) tmp += "1";
                         else tmp += cln.hash[j];
                     }
-                    
+
                     cln.hash = tmp;
                     //Console.WriteLine(cln.hash);
-                    if (visited.Contains(cln.hash)==false && cln.AddSection(sectionList[i]) && cln.Credits<=maxCredit)
+                    if (visited.Contains(cln.hash) == false && cln.AddSection(sectionList[i]) && cln.Credits <= maxCredit)
                     {
                         //cln.takenIndex[i] = true;
                         st.Push(cln);
-                        if(cln.Credits>=minCredit)scheduleList.Add(cln);
+                        if (cln.Credits >= minCredit) scheduleList.Add(cln);
                         visited.Add(cln.hash);
                     }
                     //top.RemoveSection(sectionList[i]);
@@ -185,7 +210,7 @@ namespace AIUB_Course_Scheduler
                 MessageBox.Show("No schedule found");
                 return;
             }
-            
+
 
             /*Console.WriteLine("\n\nschedule");
             foreach(Schedule sch in scheduleList)
@@ -195,14 +220,9 @@ namespace AIUB_Course_Scheduler
                     Console.WriteLine(sc.courseName + " " + sc.section + " " +sc.times[0].from + sc.times[0].day);
                 }
                 Console.WriteLine("-----");
-            }*/
-            ScheduleDisplayForm sdf = new ScheduleDisplayForm(scheduleList);
-            this.Hide();
-            sdf.ShowDialog();
-            this.Close();
+            }*/            
 
         }
-
         private void SchedulePreferencesSelection_Load(object sender, EventArgs e)
         {
 

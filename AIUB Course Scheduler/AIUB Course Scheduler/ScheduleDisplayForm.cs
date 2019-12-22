@@ -13,17 +13,25 @@ namespace AIUB_Course_Scheduler
     public partial class ScheduleDisplayForm : Form
     {
         private List<Schedule> scheduleList;
+        private IList<Course> x;
+        private IList<Course> z;
+        private string y;
+        private List<Course> selectedCourses;
         private int curPos=0;
 
         
-        public ScheduleDisplayForm(List<Schedule> scheduleList)
+        public ScheduleDisplayForm(List<Schedule> scheduleList, object selectedCourses, object x, object y, object z)
         {
+            this.x = x as List<Course>;
+            this.z = z as List<Course>;
+            this.y = y as string;
+            this.selectedCourses = (List<Course>)selectedCourses;
             this.scheduleList = scheduleList;
             curPos = 0;
             //loadButtons();
             InitializeComponent();
 
-            display();
+            display(scheduleList[curPos]);
         }
 
         public struct pair
@@ -46,7 +54,7 @@ namespace AIUB_Course_Scheduler
             {
                 button2.Enabled = true;
             }
-            if (curPos < scheduleList.Count) button1.Enabled = true;
+            if (curPos < scheduleList.Count-1) button1.Enabled = true;
             else
             {
                 button1.Enabled = false;
@@ -65,7 +73,7 @@ namespace AIUB_Course_Scheduler
 
             }
         }
-        private void display()
+        private void display(Schedule cur)
         {
             dataGridView1.Rows.Clear();
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -73,6 +81,7 @@ namespace AIUB_Course_Scheduler
             for (int i = 0; i < 20; i++) dataGridView1.Rows.Add();
             Dictionary<string, List<pair>> dayMem = new Dictionary<string, List<pair>>();
 
+            label1.Text = cur.Credits + " Credits";
             List<string> dayArr = new List<string>();
             foreach (DataGridViewColumn clm in dataGridView1.Columns)
             {
@@ -85,9 +94,9 @@ namespace AIUB_Course_Scheduler
                 }
             }
 
-            foreach (Section sc in scheduleList[curPos].sections)
+            foreach (Section sc in cur.sections)
             {
-               
+                //Console.WriteLine(sc.courseName + " " + sc.times[0].day);
                 foreach(Time tm in sc.times)
                 {
                     string dayString = tm.day.ToLower().Trim();
@@ -121,24 +130,38 @@ namespace AIUB_Course_Scheduler
                 }
             }
             loadButtons();
+            //Console.WriteLine(curPos)
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             curPos--;
             if (curPos < 0) curPos = 0;
-            display();
+            display(scheduleList[curPos]);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             curPos++;
             if (curPos >= scheduleList.Count) curPos = scheduleList.Count - 1;
-            display();
+            display(scheduleList[curPos]);            
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SchedulePreferencesSelection sps = new SchedulePreferencesSelection(selectedCourses, x, y, z);
+            this.Hide();
+            sps.ShowDialog();
+            this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
