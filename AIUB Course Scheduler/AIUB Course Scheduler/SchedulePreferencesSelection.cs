@@ -178,7 +178,7 @@ namespace AIUB_Course_Scheduler
             sdf.ShowDialog();
             this.Close();
 
-            Console.WriteLine("schedule");
+            /*Console.WriteLine("schedule");
             foreach(Schedule sch in scheduleList)
             {
                 foreach(Section sc in sch.sections)
@@ -186,7 +186,7 @@ namespace AIUB_Course_Scheduler
                     Console.WriteLine(sc.courseName + " " + sc.section);
                 }
                 Console.WriteLine("-----");
-            }
+            }*/
             
 
         }

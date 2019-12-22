@@ -95,7 +95,7 @@ namespace AIUB_Course_Scheduler
                         time1 = String.Format("{0:00}:{1:00}", from / 3600, (from / 60) % 60);
                         time2 = String.Format("{0:00}:{1:00}", to / 3600, (to / 60) % 60);
                         time = time1 + " - " + time2;
-                        dataGridView1.Rows[i].Cells[j].Value += " \n " + time;
+                        dataGridView1.Rows[i].Cells[j].Value += " \n " + time + " [" +dayMem[dayArr[j]][i].room + "]";
                     }
                 }
             }
