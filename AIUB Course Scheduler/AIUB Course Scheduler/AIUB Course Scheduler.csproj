@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cloneClass.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="FirstForm.cs">
       <SubType>Form</SubType>

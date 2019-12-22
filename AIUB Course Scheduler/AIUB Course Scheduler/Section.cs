@@ -12,7 +12,10 @@ namespace AIUB_Course_Scheduler
         public int from;
         public int to;
         public string room;
+        public string courseName;
     }
+
+
     public class Section
     {
         
@@ -50,16 +53,26 @@ namespace AIUB_Course_Scheduler
             t.from = getSeconds(from);
             t.to = getSeconds(to);
             t.room = room;
+            t.courseName = this.courseName;
             times.Add(t);
             //Console.WriteLine("From: " + t.from + " to: " + t.to + "(" + from + " " + to + ")");
         }
 
+        private string Trim(string s)
+        {
+            int i = 0;
+            for (; i < s.Length && s[i] != '(' && s[i] != '['; i++) ;
+            if (i > s.Length) i = s.Length;
+            return s.Substring(0, i).ToLower().Trim();
+        }
         public bool checkClash(List<Time> t)
         {
+            
             //return false;
             foreach(Time x in t)
-            {           
-                foreach(Time y in times)
+            {
+                if (Trim(this.courseName).Equals(Trim(x.courseName))) return true;
+                foreach (Time y in times)
                 {
                     if (x.day != y.day) continue;
 
